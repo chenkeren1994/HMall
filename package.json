@@ -1,0 +1,27 @@
+{
+  "name": "hmall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "WEBPACK_ENV=dev webpack-dev-server --inline --port 8088",
+    "dist": "WEBPACK_ENV=online webpack -p"
+  },
+  "author": "seal",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^1.1.6",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^1.15.0",
+    "webpack-dev-server": "^1.16.5"
+  },
+  "dependencies": {}
+}
