@@ -1,5 +1,5 @@
-#MMall电商平台开发笔记
-##1.开发环境构建
+<h1>MMall电商平台开发笔记</h1>
+<h2>1.开发环境构建</h2>
 `npm install webpack@1.15.0` <br />
 `npm install webpack-dev-server --save-dev` <br />
 `npm install babel-loader babel-core babel-preset-es2015 --save-dev` <br />
@@ -73,4 +73,12 @@ if ('dev' === WEBPACK_ENV) {
     config.entry.common.push('webpack-dev-server/client?http://localhost:8088/')
 }
 ```
+**git 分支与tag使用方法**
+```
+git branch v1.0
+git checkout v1.0
+git tag tag-dev-initial
+git push orgin tag-dev-initial
+```
+
 
