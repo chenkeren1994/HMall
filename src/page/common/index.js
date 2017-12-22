@@ -1,4 +1,6 @@
 /**
  * Created by seal on 12/21/17.
  */
-console.log('I am global')
+require('./layout.css')
+require('node_modules/font-awesome/css/font-awesome.min.css')
+require('./footer/index.css')

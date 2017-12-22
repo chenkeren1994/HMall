@@ -81,5 +81,176 @@ git checkout v1.0
 git tag tag-dev-initial
 git push orgin tag-dev-initial
 ```
+<h3>知识点总结：</h3>
+* git仓库的建立和项目目录的划分
+* npm使用
+* webpack使用
+
+<h2>2.通用模块的设计和拆分</h2>
+**通用js工具的封装**
+```
+const _mm = {
+   
+    //登录处理
+    doLogin() {
+        window.location.href = `./login.html?redirect=${encodeURIComponent(window.location.href)}`
+    }
+}
+module.exports = _mm
+```
+* 网络请求工具
+```
+ //网络请求
+    request(param) {
+        const _this = this
+        $.ajax({
+            type: param.method || 'get',
+            url: param.url || '',
+            dataType: param.type || 'json',
+            data: param.data || '',
+            success(res) {
+                //请求成功
+                if (0 === res.status) {
+                    typeof param.success === 'function' && param.success(res.data, res.msg)
+                }
+                //没有登录状态，需要强制登录
+                else if (10 === res.status) {
+                    _this.doLogin()
+                }
+                //请求数据错误
+                else if (1 === res.status) {
+                    typeof param.error === 'function' && param.error(res.msg)
+                }
+            },
+            error(err) {
+                typeof param.error === 'function' && param.error(err.statusText)
+            }
+        })
+    },
+```
+* URL路径工具
+```
+//获取url参数
+    getUrlParam(name) {
+        const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`)
+        const result = window.location.search.substr(1).match(reg)
+        return result ? decodeURIComponent(result[2]) : null
+    },
+```
+* 模板渲染工具--hogan  <br />
+
+`npm install hogan --save`
+```
+const Hogan = require('hogan.js')
+//渲染html模板
+renderHtml(htmlTemplate, data) {
+    const template = Hogan.compile(htmlTemplate)
+    return template.render(data)
+},
+```
+* 字段验证&&通用提示
+```
+//字段验证
+    validate(value, type) {
+        let val = $.trim(value)
+        //非空验证
+        if ('require' === type) {
+            return !!val
+        }
+        if ('phone' === type) {
+            return /^1\d{10}$/.test(val)
+        }
+        if ('email' === type) {
+            return /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(val)
+        }
+    },
+```
+* 统一跳转
+```
+doLogin() {
+   window.location.href = `./login.html?redirect=${encodeURIComponent(window.location.href)}`
+},
+goHome() {
+   window.location.href = './index.html'
+}
+```
+**页面布局**
+
+* 适用于登录、注册、通用提示等页面
+* 商品展示、下单、购物车等页面
+* 个人中心等页面
+
+**页面布局技巧**
+
+* 定宽布局
+```
+.w{
+    width: 1080px;
+    margin: 0 auto;
+    display: relative;
+    overflow: hidden;
+}
+```
+* 通用部分抽离
+* icon-font的引入
+```
+npm install font-awesome --save
+ 
+alias:
+    node_modules: `${__dirname}/node_modules`,
+require('node_modules/font-awesome/css/font-awesome.min.css')
+```
+* 通用样式定义
+
+**通用导航条开发**
+
+absolute定位，脱离文档流，默认定位在前一个元素的末尾。
+
+**通用页面头部**
+
+**通用侧边导航开发**
+
+**操作结果提示页**
+```
+通过htmlWebpackPlugin获取webpack配置文件中的参数
+<title><%= htmlWebpackPlugin.options.title %> - happymmall电商平台</title>
+ 
+获取相应操作的提示信息
+$(function () {
+    let type = _mm.getUrlParam('type') || 'default',
+        $element = $(`.${type}-success`)
+    $element.show()
+})
+```
+
+**nav逻辑层开发**
+```
+const nav = {
+    init(){
+        this.bindEvent()
+        this.loadUserInfo()
+        this.loadUserInfo()
+        return this
+    },
+    bindEvent() {
+        //登录
+        
+    },
+    loadUserInfo() {
+ 
+    },
+    loadCartCount() {
+ 
+    }
+}
+module.exports = nav
+```
+<h3>知识点总结：</h3>
+* 通用模块拆分思路
+* 通用js工具类的封装
+* 通用页面layout开发
+* 通用组件开发
+* 通用操作结果页开发
+
 
 
