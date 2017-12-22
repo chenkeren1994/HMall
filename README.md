@@ -1,5 +1,6 @@
 <h1>MMall电商平台开发笔记</h1>
 <h2>1.开发环境构建</h2>
+
 `npm install webpack@1.15.0` <br />
 `npm install webpack-dev-server --save-dev` <br />
 `npm install babel-loader babel-core babel-preset-es2015 --save-dev` <br />
