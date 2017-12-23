@@ -16,7 +16,7 @@ const nav = {
         //登录
         $('.js-login').click(() => _mm.doLogin())
         //注册
-        $('.js-register').click(() => window.location.href = './register.html')
+        $('.js-register').click(() => window.location.href = './user-register.html')
         //退出
         $('.js-logout').click(() => _user.logout((res) => {
             window.location.reload();

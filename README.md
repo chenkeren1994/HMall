@@ -11,6 +11,7 @@
 `npm install jquery --save` <br />
 
 **引入jQuery CND，配置webpack.**
+
 ```
 externals: {
                 jquery: 'window.jQuery'
@@ -18,6 +19,7 @@ externals: {
 ```
 
 **提取公共模块.** <br />
+
 ```
 plugins: [
         new webpack.optimize.CommonsChunkPlugin({
@@ -26,7 +28,9 @@ plugins: [
         })
     ]
 ```
+
 **webpack对css样式处理**
+
 ```
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 {
@@ -37,10 +41,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 new ExtractTextPlugin('css/[name].css')
 ```
 **webpack对html文件处理**
+
 ```
 npm install html-webpack-plugin html-loader --save-dev
+
 ```
 **修改webpack配置文件**
+
 ```
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const getHtmlConfig = function (name) {
@@ -56,9 +63,14 @@ const getHtmlConfig = function (name) {
 new HtmlWebpackPlugin(getHtmlConfig('index')),
 new HtmlWebpackPlugin(getHtmlConfig('login')),
 ```
+
 **ejs语法引入html文件**
+
+
 `<%= require('html-loader!./layout/html-head.html') %>`  <br />
+
 **webpack对资源文件处理**
+
 
 `npm install file-loader url-loader`
 ```
@@ -74,20 +86,25 @@ if ('dev' === WEBPACK_ENV) {
     config.entry.common.push('webpack-dev-server/client?http://localhost:8088/')
 }
 ```
+
 **git 分支与tag使用方法**
+
 ```
 git branch v1.0
 git checkout v1.0
 git tag tag-dev-initial
-git push orgin tag-dev-initial
+git push orgin tag tag-dev-initial
 ```
+
 <h3>知识点总结：</h3>
 * git仓库的建立和项目目录的划分
 * npm使用
 * webpack使用
 
 <h2>2.通用模块的设计和拆分</h2>
+
 **通用js工具的封装**
+
 ```
 const _mm = {
    
@@ -98,7 +115,9 @@ const _mm = {
 }
 module.exports = _mm
 ```
+
 * 网络请求工具
+
 ```
  //网络请求
     request(param) {
@@ -128,7 +147,9 @@ module.exports = _mm
         })
     },
 ```
+
 * URL路径工具
+
 ```
 //获取url参数
     getUrlParam(name) {
@@ -137,6 +158,7 @@ module.exports = _mm
         return result ? decodeURIComponent(result[2]) : null
     },
 ```
+
 * 模板渲染工具--hogan  <br />
 
 `npm install hogan --save`
@@ -148,7 +170,9 @@ renderHtml(htmlTemplate, data) {
     return template.render(data)
 },
 ```
+
 * 字段验证&&通用提示
+
 ```
 //字段验证
     validate(value, type) {
@@ -165,7 +189,9 @@ renderHtml(htmlTemplate, data) {
         }
     },
 ```
+
 * 统一跳转
+
 ```
 doLogin() {
    window.location.href = `./login.html?redirect=${encodeURIComponent(window.location.href)}`
@@ -183,6 +209,7 @@ goHome() {
 **页面布局技巧**
 
 * 定宽布局
+
 ```
 .w{
     width: 1080px;
@@ -251,6 +278,80 @@ module.exports = nav
 * 通用页面layout开发
 * 通用组件开发
 * 通用操作结果页开发
+
+<h2>3.用户模块设计</h2>
+**用户模块涉及的页面** <br />
+
+* 登录
+* 注册
+* 找回密码
+* 个人中心
+* 修改密码
+
+**登录**  <br />
+
+字段验证，提交后端接口，错误处理。
+
+**注册**  <br />
+
+异步验证，字段验证，错误处理。
+
+**找回密码** <br />
+
+输入账号，获取提示问题。
+
+输入提示问题答案，进行验证。验证成功后返回token
+
+提交修改后的密码和token。
+
+**个人中心** <br />
+
+获取用户信息
+
+修改用户信息
+
+**修改页面** <br />
+
+根据原密码和新密码来更新用户密码。
+
+由于表单是由js渲染进来，所以必须绑定document时间。
+```
+bindEvent () {
+        //点击提交按钮后的动作
+        $(document).on('click','.btn-submit',() => {
+            let userInfo = {
+                phone:$.trim($('#phone').val()),
+                email:$.trim($('#email').val()),
+                question:$.trim($('#question').val()),
+                answer:$.trim($('#answer').val())
+            },
+            validateResult = this.validateForm(userInfo)
+            if (validateResult.status){
+                _user.updateUserInfo(userInfo,(res,msg) => {
+                    _mm.successTips(msg)
+                    window.location.href = './user-center.html'
+                },(errMsg) => {
+                    _mm.errorTips(errMsg)
+                })
+            }else {
+                _mm.errorTips(validateResult.msg)
+            }
+
+        })
+    },
+```
+
+<h3>总结<h3/>
+
+* 用户登录
+* 用户注册
+* 密码找回
+* 个人中心
+* 修改密码
+
+
+
+
 
 
 
