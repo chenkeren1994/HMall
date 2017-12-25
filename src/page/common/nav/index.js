@@ -9,7 +9,7 @@ const nav = {
     init(){
         this.bindEvent()
         this.loadUserInfo()
-        this.loadUserInfo()
+        this.loadCartCount()
         return this
     },
     bindEvent() {
