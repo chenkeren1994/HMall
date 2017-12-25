@@ -1,10 +1,11 @@
 <h1>MMall电商平台开发笔记</h1>
 <h2>1.开发环境构建</h2>
 
-`npm install webpack@1.15.0` <br />
-`npm install webpack-dev-server --save-dev` <br />
-`npm install babel-loader babel-core babel-preset-es2015 --save-dev` <br />
-
+```
+npm install webpack@1.15.0
+npm install webpack-dev-server --save-dev
+npm install babel-loader babel-core babel-preset-es2015 --save-dev
+```
 **配置.babelrc文件** `"presets": ["es2015"]` <br />
 
 **ps:** webpack1.x版本只支持babel-loader6.x. <br />
@@ -349,8 +350,14 @@ bindEvent () {
 * 个人中心
 * 修改密码
 
-
-
+<h2>3.商品模块设计</h2>
+* 商品列表页
+    1. 按名称/种类搜索
+    2. 按价格/默认排序
+    
+* 商品详情页
+    1. 根据productId展示商品详情
+    2. 加入购物车
 
 
 
