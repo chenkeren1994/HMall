@@ -6,10 +6,12 @@ npm install webpack@1.15.0
 npm install webpack-dev-server --save-dev
 npm install babel-loader babel-core babel-preset-es2015 --save-dev
 ```
-**配置.babelrc文件** `"presets": ["es2015"]` <br />
+**配置.babelrc文件** ```"presets": ["es2015"]``` <br />
 
 **ps:** webpack1.x版本只支持babel-loader6.x. <br />
-`npm install jquery --save` <br />
+```
+npm install jquery --save
+``` 
 
 **引入jQuery CND，配置webpack.**
 
@@ -368,6 +370,38 @@ bindEvent () {
     4. 全选/取消全选
     5. 删除单个/多个购物车商品
     6. 购物车结算
+    
+<h2>5.订单模块设计</h2>
+* 订单确认页
+    1. 地址管理
+     
+    modal全屏覆盖方法
+    ```
+    .modal{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #eee;
+        background: rgba(0,0,0,.4);
+        z-index: 1000;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    ```
+    
+    2. 订单商品信息展示
+    3. 订单提交
+    
+* 订单列表页 
+    1. 订单列表展示
+    2. 分页
+
+* 订单详情页
+    1. 订单详情展示
+    2. 未支付订单可以继续支付
+    3. 取消订单
 
 
 

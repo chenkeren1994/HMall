@@ -24,6 +24,9 @@ const config = {
         'user-register': ['./src/page/user-register/index.js'],
         'user-pass-reset': ['./src/page/user-pass-reset/index.js'],
         'user-center': ['./src/page/user-center/index.js'],
+        'order-confirm': ['./src/page/order-confirm/index.js'],
+        'order-list': ['./src/page/order-list/index.js'],
+        'order-detail': ['./src/page/order-detail/index.js'],
         'user-center-update': ['./src/page/user-center-update/index.js'],
         'user-pass-update': ['./src/page/user-pass-update/index.js'],
         'detail': ['./src/page/detail/index.js'],
@@ -84,6 +87,9 @@ const config = {
         new HtmlWebpackPlugin(getHtmlConfig('detail', '商品详情')),
         new HtmlWebpackPlugin(getHtmlConfig('cart', '购物车')),
         new HtmlWebpackPlugin(getHtmlConfig('user-center', '个人中心')),
+        new HtmlWebpackPlugin(getHtmlConfig('order-confirm', '订单确认')),
+        new HtmlWebpackPlugin(getHtmlConfig('order-list', '订单列表')),
+        new HtmlWebpackPlugin(getHtmlConfig('order-detail', '商品详情')),
     ]
 }
 if ('dev' === WEBPACK_ENV) {
