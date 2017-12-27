@@ -100,7 +100,7 @@ const addressModal = {
         receiverInfo.receiverCity       = this.$modalWrap.find('#receiver-city').val();
         receiverInfo.receiverAddress    = $.trim(this.$modalWrap.find('#receiver-address').val());
         receiverInfo.receiverPhone      = $.trim(this.$modalWrap.find('#receiver-phone').val());
-        receiverInfo.receiverZip        = $.trim(this.$modalWrap.find('#receiver-zip').val());
+        receiverInfo.receiverZip        = $.trim(this.$modalWrap.find('#receiver-code').val());
 
         if(this.option.isUpdate){
             receiverInfo.id             = this.$modalWrap.find('#receiver-id').val();

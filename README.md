@@ -406,7 +406,25 @@ bindEvent () {
 <h2>6.支付模块设计</h2>  
 * 支付宝支付 ---notify_url 方式
     1. 请求支付获取支付二维码
-    2. 轮训检查订单状态，支付成功跳转提示页 
+    2. 轮训检查订单状态，支付成功跳转提示页
+    
+<h2>7.生产环境适配</h2>
+1. 打包后引号消失问题
+```
+{
+     test: /\.string/,
+     loader: 'html-loader',
+     query: {
+            minimize: true,
+            removeAttributeQuotes: false
+     
+}
+```
+2. 基本SEO优化
+    1. 品牌
+    2. 高频关键词
+    3. 长尾关键词
+
 
 
 

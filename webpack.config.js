@@ -8,6 +8,7 @@ const getHtmlConfig = function (name, title) {
     return {
         template: `./src/view/${name}.html`,
         filename: `view/${name}.html`,
+        favicon: './favicon.ico',
         inject: true,
         hash: true,
         chunks: ['common', name],
@@ -32,10 +33,11 @@ const config = {
         'detail': ['./src/page/detail/index.js'],
         'payment': ['./src/page/payment/index.js'],
         'result': ['./src/page/result/index.js'],
+        'about': ['./src/page/about/index.js'],
     },
     output: {
-        path: './dist',
-        publicPath: '/dist/',
+        path: __dirname + '/dist/',
+        publicPath: 'dev' === WEBPACK_ENV ? '/dist/' : '//s.happymmall.com/mmall-fe/dist/',
         filename: 'js/[name].js'
     },
     externals: {
@@ -58,7 +60,11 @@ const config = {
             },
             {
                 test: /\.string/,
-                loader: 'html-loader'
+                loader: 'html-loader',
+                query: {
+                    minimize: true,
+                    removeAttributeQuotes: false
+                }
             }
         ]
     },
@@ -90,6 +96,7 @@ const config = {
         new HtmlWebpackPlugin(getHtmlConfig('user-center', '个人中心')),
         new HtmlWebpackPlugin(getHtmlConfig('order-confirm', '订单确认')),
         new HtmlWebpackPlugin(getHtmlConfig('order-list', '订单列表')),
+        new HtmlWebpackPlugin(getHtmlConfig('about', '关于我们')),
         new HtmlWebpackPlugin(getHtmlConfig('order-detail', '商品详情')),
         new HtmlWebpackPlugin(getHtmlConfig('payment', '订单支付')),
     ]
