@@ -30,6 +30,7 @@ const config = {
         'user-center-update': ['./src/page/user-center-update/index.js'],
         'user-pass-update': ['./src/page/user-pass-update/index.js'],
         'detail': ['./src/page/detail/index.js'],
+        'payment': ['./src/page/payment/index.js'],
         'result': ['./src/page/result/index.js'],
     },
     output: {
@@ -90,6 +91,7 @@ const config = {
         new HtmlWebpackPlugin(getHtmlConfig('order-confirm', '订单确认')),
         new HtmlWebpackPlugin(getHtmlConfig('order-list', '订单列表')),
         new HtmlWebpackPlugin(getHtmlConfig('order-detail', '商品详情')),
+        new HtmlWebpackPlugin(getHtmlConfig('payment', '订单支付')),
     ]
 }
 if ('dev' === WEBPACK_ENV) {
